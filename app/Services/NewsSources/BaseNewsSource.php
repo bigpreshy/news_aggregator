@@ -43,7 +43,6 @@ abstract class BaseNewsSource implements NewsSourceInterface
             $this->saveArticles($articles); // Save articles to DB
 
             return $articles;
-            // return $this->normalizeData(json_decode($response->getBody(), true));
         } catch (\Exception $e) {
             Log::error("{$this->sourceName} Error: {$e->getMessage()}");
             return [];

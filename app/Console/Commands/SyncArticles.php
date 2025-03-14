@@ -10,14 +10,6 @@ class SyncArticles extends Command
     protected $description = 'Sync articles from news sources';
     public function handle(NewsApiService $service)
     {
-        // try {
-        //     $articles = $service->fetchArticles();
 
-        //     $this->info("Synced " . count($articles) . " articles from NewsAPI");
-        //     return 0;
-        // } catch (\Exception $e) {
-        //     $this->error("Sync failed: " . $e->getMessage());
-        //     return 1;
-        // }
     }
 }

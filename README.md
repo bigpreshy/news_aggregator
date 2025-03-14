@@ -221,10 +221,6 @@ GET /api/articles?start_date=2024-03-01&end_date=2024-03-31
 
 # 🧪 Testing Approach
 
-## Unit Tests
-- Service layer validation
-- Data normalization tests
-- Error handling verification
 
 ## Feature Tests
 - API endpoint validation
