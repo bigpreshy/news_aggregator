@@ -39,7 +39,7 @@ class FetchArticles extends Command
             try {
                 $service  = app($serviceClass);
                 $articles = $service->fetchArticles();
-                Article::upsert($articles, ['url', 'published_at']);
+                Article::upsert($articles, ['url']);
             } catch (\Exception $e) {
                 Log::error("Data Sync Error: {$e->getMessage()}");
             }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('author')->nullable();
             $table->string('source_name');
             $table->dateTime('published_at');
-            $table->string('url');
+            $table->string('url')->unique();
             $table->timestamps();
             $table->index(['source_id', 'category', 'published_at']);
             $table->fullText(['title', 'content']);

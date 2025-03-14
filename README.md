@@ -68,9 +68,16 @@ cp .env.example .env
 php artisan migrate
 ```
 
-## Start Scheduler (for Automated Updates)
+## Start Scheduler (for Automated Updates) locally
 ```bash
 php artisan schedule:work
+```
+
+
+## In Production Environment(Optional for this test)
+Use a cron job to run the Laravel scheduler every minute:
+```bash
+* * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1
 ```
 
 ---
@@ -83,6 +90,12 @@ http://localhost:8000
 ```
 
 ## Sample Requests
+
+### Fetch Articles by Search & Source
+
+```http
+GET /api/articles?search=Trump
+```
 
 ### Fetch Articles by Search & Source
 ```http

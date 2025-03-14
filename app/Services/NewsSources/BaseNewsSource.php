@@ -27,8 +27,8 @@ abstract class BaseNewsSource implements NewsSourceInterface
     {
         Article::upsert(
             $articles,
-            ['url', 'published_at'],
-            ['title', 'content', 'author', 'category', 'source_name']
+            ['url'], // unique identifier
+            ['title', 'content', 'author', 'category', 'source_name', 'published_at']
         );
     }
 
