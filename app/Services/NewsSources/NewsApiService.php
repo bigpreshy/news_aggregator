@@ -43,7 +43,7 @@ class NewsApiService extends BaseNewsSource implements NewsSourceInterface
             'content'   => Str::limit(strip_tags($rawArticle['content'] ?? $rawArticle['description'] ?? ''), 10000),
             'category'  => $rawArticle['category'] ?? 'general',
             'author'    => $rawArticle['author'] ?? 'Unknown',
-            'url'       => $rawArticle['url'],
+            'url'       => $rawArticle['url'] ?? '',
         ];
     }
 

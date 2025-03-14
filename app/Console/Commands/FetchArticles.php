@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Console\Commands;
 
 use App\Models\Article;
@@ -31,14 +30,14 @@ class FetchArticles extends Command
     public function handle()
     {
         $services = [
-            //  NewsApiService::class,
+            NewsApiService::class,
             GuardianService::class,
-            // NyTimesService::class,
+            NyTimesService::class,
         ];
 
         foreach ($services as $serviceClass) {
             try {
-                $service = app($serviceClass);
+                $service  = app($serviceClass);
                 $articles = $service->fetchArticles();
                 Article::upsert($articles, ['url', 'published_at']);
             } catch (\Exception $e) {

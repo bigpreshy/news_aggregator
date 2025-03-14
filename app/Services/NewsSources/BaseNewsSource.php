@@ -3,6 +3,7 @@
 namespace App\Services\NewsSources;
 
 use App\Interfaces\NewsSourceInterface;
+use App\Models\Article;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
@@ -22,18 +23,34 @@ abstract class BaseNewsSource implements NewsSourceInterface
         ]);
     }
 
+    protected function saveArticles(array $articles): void
+    {
+        Article::upsert(
+            $articles,
+            ['url', 'published_at'],
+            ['title', 'content', 'author', 'category', 'source_name']
+        );
+    }
+
     public function fetchArticles(): array
     {
         try {
             $response = $this->client->get($this->getEndpoint(), [
                 'query' => $this->getQueryParams()
             ]);
-            return $this->normalizeData(json_decode($response->getBody(), true));
+
+            $articles = $this->normalizeData(json_decode($response->getBody(), true));
+            $this->saveArticles($articles); // Save articles to DB
+
+            return $articles;
+            // return $this->normalizeData(json_decode($response->getBody(), true));
         } catch (\Exception $e) {
             Log::error("{$this->sourceName} Error: {$e->getMessage()}");
             return [];
         }
     }
+
+
 
     abstract protected function getEndpoint(): string;
     abstract protected function getQueryParams(): array;

@@ -11,6 +11,8 @@ class ArticleController extends Controller
         private ArticleRepository $repository
     ) {}
 
+
+
     public function index(ArticleIndexRequest $request)
     {
         try {
