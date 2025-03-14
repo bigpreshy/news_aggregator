@@ -19,5 +19,5 @@ use Illuminate\Support\Facades\Artisan;
 app()->booted(function () {
     $schedule = app(Schedule::class);
 
-    $schedule->command('app:fetch-articles')->everyMinute();
+    $schedule->command('app:fetch-articles')->hourly();
 });
